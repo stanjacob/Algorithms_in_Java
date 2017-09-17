@@ -60,10 +60,67 @@ public class ArrayProcess {
 		return c;
 	}
 	
+	public static int abs(int x) {
+		if (x < 0) return -x;
+		else return x;
+	}
+	
+	public static double abs(double x) {
+		if (x < 0.) return -x;
+		else return x;
+	}
+	
+	public static boolean isPrime(int N) {
+		if (N < 2) return false;
+		for (int i = 2; i * i < N; ++i) {
+			if (N % i == 0) return false;
+		}
+		return true;
+	}
+	
+	public static double f(double x, double c) {
+		return x*x - c;
+	}
+	
+	public static double f_prime(double x) {
+		return 2*x;
+	}
+	
+	public static double sqrt(double c) {
+		// using Newton's method
+		// f(x) = x^2 - c*c
+		// f'(x) = 2 * x
+		// x1 = x0 - f(x0)/f'(x0)
+		if (c < 0.0) return Double.NaN;
+		
+		double precision = 1e-3;
+		double x0 = c;
+		double x1 = x0 - f(x0, c)/f_prime(x0);
+				
+		while (abs(x1-x0) > precision) {
+			x0 = x1;
+			x1 = x0 - f(x0, c)/f_prime(x0);
+		}
+		
+		return x1;
+	}
+	
+	public static double hypotenuse(double x, double y) {
+		return sqrt(x*x + y*y);
+	}
+	
+	public static double harmonic_sum(int N) {
+		double sum = 0;
+		for (int i = 1; i < N; ++i)
+			sum += (double)1/i;
+		return sum;
+	}
+	
 	public static void main(String[] args) {
 		int M, N;
 		M = 5; N = 10;
 		double[][] matrix = new double[M][N]; // defaults to 0.0
 		System.out.println(matrix[1].length);
+		System.out.println(sqrt(2));
 	}
 }
