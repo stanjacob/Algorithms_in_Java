@@ -47,11 +47,13 @@ public class ArrayProcess {
 	}
 	
 	public static double[][] mat_mult(double[][] a, double[][] b) {
-		int N = a.length;
-		double[][] c= new double[N][N];
-		for (int i = 0; i < N; ++i) {
-			for (int j = 0; j < N; ++j) {
-				for (int k = 0; k < N; ++k)
+		int M1 = a.length; int N1 = a[0].length;
+		int M2 = b.length; int N2 = b[0].length;
+		
+		double[][] c = new double[M1][N2];
+		for (int i = 0; i < M1; ++i) {
+			for (int j = 0; j < N2; ++j) {
+				for (int k = 0; k < N1; ++k)
 					c[i][j] += a[i][k] * b[k][j];
 			}
 		}
@@ -59,18 +61,9 @@ public class ArrayProcess {
 	}
 	
 	public static void main(String[] args) {
-		int[] a = {1, 4, 2, 24, 19};
-		int[] b = a;
-		b[2] = 24;
-		System.out.println(a[2]);
-		
 		int M, N;
-		M = 10; N = 10;
+		M = 5; N = 10;
 		double[][] matrix = new double[M][N]; // defaults to 0.0
-		System.out.println(matrix[1][1]);
-		
-		a = reverse_array(a);
-		for (int i = 0; i < a.length; ++i)
-			System.out.println(a[i]);
+		System.out.println(matrix[1].length);
 	}
 }
